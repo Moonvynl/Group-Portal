@@ -18,4 +18,3 @@ class CustomUser(AbstractUser):
     class Meta():
         verbose_name = 'User'
 
-
