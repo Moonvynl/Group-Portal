@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from forms import RegisterForm
+from .forms import RegisterForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -8,12 +8,12 @@ from django.views.generic import CreateView, TemplateView
 
 class TestTemplateView(TemplateView):
     template_name = 'base.html'
-    
+
 
 class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = "auth_sys/register.html"
-    success_url = reverse_lazy("tasks:task-list")
+    success_url = reverse_lazy("auth_system:test")
 
     def form_valid(self, form):
         user = form.save()
@@ -23,7 +23,7 @@ class RegisterView(CreateView):
             if user.is_authenticated:
                 return HttpResponseRedirect(self.success_url)
             else:
-                return redirect("auth_sys:login")
+                return redirect("auth_system:login")
 
         return super().form_valid(form)
 
