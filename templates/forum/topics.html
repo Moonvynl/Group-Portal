@@ -2,7 +2,7 @@
 {% block content %}
     <h2>Topics</h2>
     {% for topic in topics %}
-        <li>{{ topic.title }}</li>
+        <li><a href="{% url 'posts' topic.id %}">{{ topic.title }}</a></li>
     {% endfor %}
 
 {% endblock content %}

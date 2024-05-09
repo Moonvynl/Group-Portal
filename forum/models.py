@@ -33,6 +33,7 @@ class Post(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, related_name='posts')
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='posts')
 
+    title = models.CharField(max_length=98)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
