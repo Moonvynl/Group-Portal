@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Posts</h2>
+    <h2>Discussion</h2>
+    <form method="post" action="{% url 'posts' topic.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Post</button>
+    </form>
     {% for post in posts %}
-        <li><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></li>
+        <li>{{ post.title }} - {{ post.content }} by {{ post.author }}</li>
     {% endfor %}
 
 {% endblock content %}

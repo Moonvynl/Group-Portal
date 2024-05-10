@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2>Topics</h2>
+    <a href="{% url 'create-topic' category.id %}">Create topic</a>
     {% for topic in topics %}
         <li><a href="{% url 'posts' topic.id %}">{{ topic.title }}</a></li>
     {% endfor %}
