@@ -47,3 +47,51 @@ class PostCreationForm(forms.ModelForm):
         widgets = {
             'content': forms.TextInput(attrs={'class': 'form-control'})
         }
+
+
+class CategoryUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = [
+            'name'
+        ]
+
+        labels = {
+            'name': 'Enter new category name:'
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+
+class TopicUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Topic
+        fields = [
+            'title'
+        ]
+
+        labels = {
+            'title': 'Enter new topic title:'
+        }
+
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+
+class PostUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = [
+            'content'
+        ]
+
+        labels = {
+            'content': 'New text'
+        }
+
+        widgets = {
+            'content': forms.TextInput(attrs={'class': 'form-control'})
+        }
