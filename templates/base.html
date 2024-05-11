@@ -8,7 +8,7 @@
 <body>
     <h1>Test Template</h1>
     {% if request.user.is_authenticated %}
-        <h1>You're authenticated  ....</h1>
+        <h1>You're authenticated</h1>
     {% else %}
     <a href="{% url 'auth_system:register' %}">Register</a>
     <a href="{% url 'auth_system:login' %}">Login</a>
