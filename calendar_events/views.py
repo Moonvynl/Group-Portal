@@ -4,10 +4,9 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, ListView
 from calendar_events.models import Event
-from calendar import monthrange
 from django.utils import timezone
 from django.template.defaulttags import register
-
+import calendar
 
 class CalendarEventListView(ListView):
     model = Event
@@ -17,6 +16,6 @@ class CalendarEventListView(ListView):
     def get_context_data(self,*args, **kwargs):
         context = super(CalendarEventListView, self).get_context_data(*args,**kwargs)
         today = timezone.now()
-        days_of_month = monthrange(today.year, today.month)[1] + 1
-        context['days_of_month'] = days_of_month
+        context['calendar'] = calendar.Calendar().monthdays2calendar(today.year, today.month)
+        context['today'] = today
         return context
