@@ -51,12 +51,15 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
-                        Events for today:
+                        Події на сьогодні:
                     </div>
                     <div class="card-body">
                         {% for event in events_date %}
                             <h5 class="card-title">{{event.name}}</h5>
-                            <p class="card-text">{{event.description}}</p>
+                            <p class="card-text">
+                                {{event.description}}
+                                Event time:{{event.event_time}}
+                            </p>
                         {%endfor%}
                     </div>
                 </div>
