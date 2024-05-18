@@ -12,7 +12,7 @@
                     <button type="submit" class="btn btn-primary">Post</button>
                 </form>
                 <ul class="list-unstyled list-group">
-                    {% for post in posts %}
+                    {% for post in page_obj %}
                         <li class="list-group-item">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
@@ -56,6 +56,13 @@
                 </ul>
             </div>
             <div class="col-md-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                {% for page_num in page_obj.paginator.page_range %}
+                <a href="?page={{ page_num }}" class="display: inline-block link-offset-2 link-underline link-underline-opacity-0">{{ page_num }}</a>
+                {% endfor %}
             </div>
         </div>
     </div>

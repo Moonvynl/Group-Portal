@@ -6,9 +6,9 @@
                 {% if topics %}
                     <h2 class="mb-4">Topics</h2>
                     <ul class="list-group">
-                        {% for topic in topics %}
+                        {% for topic in page_obj %}
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a href="{% url 'posts' topic.id %}" class="text-dark">{{ topic.title }}</a>
+                                <a href="{% url 'posts' topic.id %}" class="text-dark link-offset-2 link-underline link-underline-opacity-0">{{ topic.title }}</a>
                                 {% if request.user.is_authenticated and request.user.id == topic.creator.id %}
                                     <div class="btn-group">
                                         <a href="{% url 'update-topic' topic.id %}" class="btn btn-sm btn-outline-secondary">
@@ -43,6 +43,13 @@
                         </div>
                     </div>
                 {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                {% for page_num in page_obj.paginator.page_range %}
+                <a href="?page={{ page_num }}" class="display: inline-block link-offset-2 link-underline link-underline-opacity-0">{{ page_num }}</a>
+                {% endfor %}
             </div>
         </div>
     </div>
