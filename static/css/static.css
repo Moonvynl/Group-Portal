@@ -1,0 +1,7 @@
+:root {
+    --primary-color: rgba(104,92,254,255);
+    }
+
+body{
+    background-color: var(--primary-color);
+}

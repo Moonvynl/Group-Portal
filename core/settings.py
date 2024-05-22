@@ -120,6 +120,8 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+STATIC_ROOT = "/static/"
+
 AUTH_USER_MODEL = 'auth_system.CustomUser'
 
 # Default primary key field type
