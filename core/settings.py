@@ -40,10 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 <<<<<<< HEAD
+<<<<<<< HEAD
     'menu'
 =======
     'calendar_events'
 >>>>>>> d84d2bcf84853867a1a13b6b0055f816524c1edb
+=======
+    'calendar_events',
+    'forum',
+>>>>>>> 712ffd0f8bb20fd94e9693589a1f68a41100b19e
 ]
 
 MIDDLEWARE = [
@@ -120,6 +125,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),

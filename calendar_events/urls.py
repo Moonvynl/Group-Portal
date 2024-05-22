@@ -1,9 +1,10 @@
 from django.urls import path
-from calendar_events.views import CalendarEventListView
+from calendar_events.views import view_date_events
 from django.urls import reverse_lazy
 
 urlpatterns = [
-    path('calendar/', CalendarEventListView.as_view(), name='calendar'),
+    path('calendar/', view_date_events, name='calendar_events'),
+    path('calendar/<int:year>/<int:month>/<int:day>', view_date_events, name='events'),
 ]
 
 app_name = 'calendar_event'
