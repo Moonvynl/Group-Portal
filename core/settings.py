@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'menu'
+=======
+    'calendar_events'
+>>>>>>> d84d2bcf84853867a1a13b6b0055f816524c1edb
 ]
 
 MIDDLEWARE = [
