@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 :root {
     --primary-color: rgba(104,92,254,255);
     }
 
 body{
     background-color: var(--primary-color);
+=======
+body{
+    background-color: rgb(209, 207, 204);
+>>>>>>> 8104b43932d1ccc94a14c63465c13b569b7d01a3
 }

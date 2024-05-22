@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="{% static 'css/static.css' %}">
+=======
+    <link rel='stylesheet' type="text/css" href="{% static 'css/static.css' %}">
+>>>>>>> 8104b43932d1ccc94a14c63465c13b569b7d01a3
     <title>Document</title>
 </head>
 <body>
@@ -14,6 +18,7 @@
     {% else %}
     <a href="{% url 'auth_system:register' %}">Register</a>
     <a href="{% url 'auth_system:login' %}">Login</a>
+    <a href="{% url 'all-categories' %}">Forum</a>
     {% endif %}
     {% block content %}
     {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Categories</h2>
+    {% if request.user.access == "moder" or request.user.access == "admin" %}
+        <a href="{% url 'create-category' %}">Create Category</a>
+    {% endif %}
+    {% for category in categories %}
+        <li>
+            <a href="{% url 'topics' category.id %}">{{ category.name }}</a> 
+            {% if request.user.access == "moder" or request.user.access == "admin" %}
+                <a href="{% url 'update-category' category.id %}">Update category</a>
+                <a href="{% url 'delete-category' category.id %}">Delete category</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+
+{% endblock content %}

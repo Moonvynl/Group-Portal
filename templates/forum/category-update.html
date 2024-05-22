@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Category update</h2>
+    <form method="post" action="{% url 'update-category' category.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+{% endblock content %}
