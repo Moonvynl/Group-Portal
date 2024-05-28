@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <ul>
+            <li>
+                {{ advert.title }}<br>
+                {{ advert.content }}
+                <img src="{{ advert.image.url }}">
+            </li>
+        </ul>
+    </div>
+{% endblock %}

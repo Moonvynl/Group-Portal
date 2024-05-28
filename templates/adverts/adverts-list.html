@@ -4,7 +4,7 @@
         <ul>
             {% for advert in adverts %}
                 <li>
-                    {{ advert.title }}<br>
+                    <a href="{% url 'advert-detail' advert.id %}">{{ advert.title }}</a><br>
                     {{ advert.shorten_content }}
                     <img src="{{ advert.image.url }}">
                 </li>

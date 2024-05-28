@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import AdvertsListView
+from .views import AdvertsListView, AdvertDetailView
 
 
 urlpatterns = [
     path('list/', AdvertsListView.as_view(), name='adverts-list'),
+    path('<int:pk>/detail/', AdvertDetailView.as_view(), name='advert-detail')
 ]
