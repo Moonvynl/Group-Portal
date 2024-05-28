@@ -1,10 +1,10 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, View
+from django.views.generic import ListView, DetailView, CreateView, View, UpdateView
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from .models import Advert
-from .forms import AdvertCreationForm
+from .forms import AdvertCreationForm, AdvertUpdateForm
 
 
 # Create your views here.
@@ -44,7 +44,7 @@ class AdvertCreateView(View):
         )
     
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
 
         context = {
             'form': form
@@ -60,3 +60,11 @@ class AdvertCreateView(View):
             self.template_name,
             context
         )
+
+
+@method_decorator(user_passes_test(is_user_admin_or_moderator), name='dispatch')
+class AdvertUpdateView(UpdateView):
+    model = Advert
+    form_class = AdvertUpdateForm
+    template_name = 'adverts/advert-update.html'
+    success_url = reverse_lazy('adverts-list')
