@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if request.user.access == 'moder' or  request.user.is_staff %}
+    <a href="{% url 'advert-create' %}">Create advert</a>
+{% endif %}
     <div>
         <ul>
             {% for advert in adverts %}
                 <li>
                     <a href="{% url 'advert-detail' advert.id %}">{{ advert.title }}</a><br>
                     {{ advert.shorten_content }}
-                    <img src="{{ advert.image.url }}">
+                    {% if advert.image %}
+                        <img src="{{ advert.image.url }}">
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>

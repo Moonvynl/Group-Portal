@@ -5,7 +5,9 @@
             <li>
                 {{ advert.title }}<br>
                 {{ advert.content }}
-                <img src="{{ advert.image.url }}">
+                {% if advert.image %}
+                        <img src="{{ advert.image.url }}">
+                {% endif %}
             </li>
         </ul>
     </div>
