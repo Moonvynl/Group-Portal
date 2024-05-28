@@ -14,6 +14,7 @@
                     {% endif %}
                     {% if request.user.access == 'moder' or  request.user.is_staff %}
                         <a href="{% url 'advert-update' advert.id %}">Update advert</a>
+                        <a href="{% url 'advert-delete' advert.id %}">Delete advert</a>
                     {% endif %}
                 </li>
             {% endfor %}
