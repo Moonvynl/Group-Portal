@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <ul>
+            {% for advert in adverts %}
+                <li>
+                    {{ advert.title }}<br>
+                    {{ advert.shorten_content }}
+                    <img src="{{ advert.image.url }}">
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
