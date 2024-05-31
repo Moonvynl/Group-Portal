@@ -27,5 +27,12 @@
             </div>
         {% endfor %}
     </div>
+    <div class="row">
+        <div class="col-12">
+            {% for page_num in page_obj.paginator.page_range %}
+            <a href="?page={{ page_num }}" class="display: inline-block link-offset-2 link-underline link-underline-opacity-0">{{ page_num }}</a>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock %}

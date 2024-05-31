@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, View, UpdateView, DeleteView
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator
 from .models import Advert
 from .forms import AdvertCreationForm, AdvertUpdateForm
 
@@ -13,6 +14,7 @@ class AdvertsListView(ListView):
     model = Advert
     template_name = 'adverts/adverts-list.html'
     context_object_name = 'adverts'
+    paginate_by = 10
 
 
 class AdvertDetailView(DetailView):
