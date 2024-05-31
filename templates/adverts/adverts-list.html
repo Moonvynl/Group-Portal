@@ -1,23 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-{% if request.user.access == 'moder' or  request.user.is_staff %}
-    <a href="{% url 'advert-create' %}">Create advert</a>
-{% endif %}
-    <div>
-        <ul>
-            {% for advert in adverts %}
-                <li>
-                    <a href="{% url 'advert-detail' advert.id %}">{{ advert.title }}</a><br>
-                    {{ advert.shorten_content }}
+<div class="container mt-4">
+    {% if request.user.access == 'moder' or request.user.is_staff %}
+        <a href="{% url 'advert-create' %}" class="btn btn-primary mb-3">Create advert</a>
+    {% endif %}
+    <div class="row">
+        {% for advert in adverts %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
                     {% if advert.image %}
-                        <img src="{{ advert.image.url }}">
+                        <img src="{{ advert.image.url }}" class="card-img-top" alt="{{ advert.title }}">
                     {% endif %}
-                    {% if request.user.access == 'moder' or  request.user.is_staff %}
-                        <a href="{% url 'advert-update' advert.id %}">Update advert</a>
-                        <a href="{% url 'advert-delete' advert.id %}">Delete advert</a>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'advert-detail' advert.id %}">{{ advert.title }}</a>
+                        </h5>
+                        <p class="card-text">{{ advert.shorten_content }}</p>
+                    </div>
+                    <div class="card-footer text-right">
+                        {% if request.user.access == 'moder' or request.user.is_staff %}
+                            <a href="{% url 'advert-update' advert.id %}" class="btn btn-warning btn-sm">Update</a>
+                            <a href="{% url 'advert-delete' advert.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock %}

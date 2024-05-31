@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div>
-        <ul>
-            <li>
-                {{ advert.title }}<br>
-                {{ advert.content }}
-                {% if advert.image %}
-                        <img src="{{ advert.image.url }}">
-                {% endif %}
-            </li>
-        </ul>
+<div class="container mt-4">
+    <div class="card">
+        {% if advert.image %}
+            <img src="{{ advert.image.url }}" class="card-img-top" alt="{{ advert.title }}">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ advert.title }}</h5>
+            <p class="card-text">{{ advert.content }}</p>
+        </div>
     </div>
+</div>
 {% endblock %}
