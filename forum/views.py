@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView, View, CreateView, UpdateV
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator
 from .models import Category, Topic, Post
 from .forms import CategoryCreationForm, TopicCreationForm, PostCreationForm, CategoryUpdateForm, TopicUpdateForm, PostUpdateForm
 from .mixins import CreatorIsOwnerMixin, AuthorIsOwnerMixin
@@ -29,9 +30,14 @@ class CategoriesTopicsView(View):
         category = get_object_or_404(Category, id=kwargs.get('category_id'))
         topics = self.get_queryset(**kwargs)
 
+        paginator = Paginator(topics, 5)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
         context = {
             'category': category,
-            'topics': topics
+            'topics': topics,
+            'page_obj': page_obj
         }
 
         return render(
@@ -56,10 +62,15 @@ class TopicsPostsView(View):
         posts = self.get_queryset(**kwargs)
         form = self.form_class
 
+        paginator = Paginator(posts, 5)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
         context = {
             'topic': topic,
             'posts': posts,
-            'form': form
+            'form': form,
+            'page_obj': page_obj
         }
 
         return render(
