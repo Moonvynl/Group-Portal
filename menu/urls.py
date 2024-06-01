@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from menu.views import *
-app_name = 'menu'
+
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
@@ -9,3 +9,4 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
 ]
 
+app_name = 'menu'

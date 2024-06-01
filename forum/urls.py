@@ -18,3 +18,5 @@ urlpatterns = [
     path('topic/<int:pk>/delete/', login_required(TopicDeleteView.as_view()), name='delete-topic'),
     path('post/<int:pk>/delete/', login_required(PostDeleteView.as_view()), name='delete-post')
 ]
+
+app_name = 'forum'
