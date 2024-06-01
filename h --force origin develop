@@ -1,0 +1,313 @@
+[33mcommit dd157f9c2e14cc88db927afa33e505c31289b9c2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m
+Merge: 1e3721b 55d70d6
+Author: mariykamak <mkondratuk228@gmail.com>
+Date:   Sat May 25 12:25:02 2024 +0300
+
+    Deleted templates
+
+[33mcommit 55d70d6e80e5b475384818985fe419e0fcb1817a[m[33m ([m[1;31mupstream/main[m[33m, [m[1;31mupstream/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 8104b43 712ffd0
+Author: Moonvynl <127021082+Moonvynl@users.noreply.github.com>
+Date:   Wed May 22 19:51:53 2024 +0300
+
+    Merge pull request #5 from Moonvynl/develop
+    
+    Develop
+
+[33mcommit 1e3721b808b0f83d5207cb5532536732d74c17af[m
+Merge: 98cbc9b 712ffd0
+Author: mariykamak <mkondratuk228@gmail.com>
+Date:   Wed May 22 19:49:13 2024 +0300
+
+    Added menu
+
+[33mcommit 98cbc9b259c65d0c04816d04accfe8bc9a9860ae[m
+Author: mariykamak <mkondratuk228@gmail.com>
+Date:   Wed May 22 19:46:49 2024 +0300
+
+    Menu
+
+[33mcommit e18c21328ea1747e1675a7b23685dcbbd6017aa6[m
+Merge: 75e5835 d84d2bc
+Author: mariykamak <mkondratuk228@gmail.com>
+Date:   Wed May 22 19:35:53 2024 +0300
+
+    Merge branch 'develop' of https://github.com/Moonvynl/Group-Portal into develop
+
+[33mcommit 712ffd0f8bb20fd94e9693589a1f68a41100b19e[m[33m ([m[1;31mupstream/develop[m[33m)[m
+Merge: 91a8148 ce443d0
+Author: Moonvynl <127021082+Moonvynl@users.noreply.github.com>
+Date:   Sat May 18 12:41:02 2024 +0300
+
+    Merge pull request #3 from ravion223/develop
+    
+    Test commit
+
+[33mcommit 91a81481453fc9adb9dac6476e218257505568de[m
+Merge: 3966438 0093885
+Author: Moonvynl <127021082+Moonvynl@users.noreply.github.com>
+Date:   Sat May 18 12:39:06 2024 +0300
+
+    Merge pull request #4 from Michael322312/develop
+    
+    Pull request 2
+
+[33mcommit 0093885b210a0a5d6bc4a50d11200e7192aca3dc[m
+Merge: 4495e81 3966438
+Author: Michael322312 <98754644+Michael322312@users.noreply.github.com>
+Date:   Sat May 18 12:37:12 2024 +0300
+
+    Merge branch 'Moonvynl:develop' into develop
+
+[33mcommit ce443d0cfea4cfa26a3a549dd83e1760a491795b[m
+Author: ravion223 <tablettaoson2016@gmail.com>
+Date:   Sat May 18 12:18:13 2024 +0300
+
+    Test commit
+
+[33mcommit 4495e81350776926a25123ac1b262543189d68ff[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Sat May 18 12:12:24 2024 +0300
+
+    Made changes
+
+[33mcommit 396643885939b1e3942a090f168e6004d0818418[m
+Author: ravion223 <tablettaoson2016@gmail.com>
+Date:   Wed May 15 20:34:37 2024 +0300
+
+    Styled forum with bootstrap
+
+[33mcommit 8861f12d96039f66f668e9e4e5c3e8181cc33eda[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Mon May 13 21:56:07 2024 +0300
+
+    Adapted interface and made day select
+
+[33mcommit dafad5dae138eded21e9eb1da49a9e8e9855df90[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Mon May 13 21:54:44 2024 +0300
+
+    Added 2 urls, so default param can be used
+
+[33mcommit e6b82ab37698f1da6d3bb41caa66edf81b56fec6[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Mon May 13 21:54:00 2024 +0300
+
+    Remade calendar view
+
+[33mcommit 8104b43932d1ccc94a14c63465c13b569b7d01a3[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 5cfd2b8 960493e
+Author: Moonvynl <127021082+Moonvynl@users.noreply.github.com>
+Date:   Sun May 12 20:58:14 2024 +0300
+
+    Merge pull request #2 from Moonvynl/develop
+    
+    Create pull request
+
+[33mcommit 960493e66c62a15943213a9926e678b4677c207d[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Sun May 12 20:03:51 2024 +0300
+
+    ReMade html page with calendar
+
+[33mcommit 420ac2eeb73803b919c4043fdb91eb0d76bb7f5c[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Sun May 12 20:03:10 2024 +0300
+
+    Edited context data. Changed logic of calendar
+
+[33mcommit 3d1e9947089906d38e1314be2625c127c9d551b0[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Sun May 12 20:02:28 2024 +0300
+
+    Deleted unneeded tag
+
+[33mcommit 5bb746f8a90448c3055f448b4828b14b90fece16[m
+Merge: 68c3678 400deb9
+Author: ravion223 <tablettaoson2016@gmail.com>
+Date:   Sat May 11 15:52:57 2024 +0300
+
+    Merge branch 'develop' of https://github.com/Moonvynl/Group-Portal into develop
+
+[33mcommit 68c3678c28f1279ac163cf7174e93c971ba89925[m
+Author: ravion223 <tablettaoson2016@gmail.com>
+Date:   Sat May 11 15:51:07 2024 +0300
+
+    fixed minor bag
+
+[33mcommit 28e8b80bd1addf4e97c27a1ebb6e593f998f0384[m
+Author: ravion223 <tablettaoson2016@gmail.com>
+Date:   Sat May 11 13:50:40 2024 +0300
+
+    Added functionality of updating and deleting forum categories, topics and posts. Also created two mixins.
+
+[33mcommit 3149058393cc4a3060292453ae2baaeecab4b010[m
+Author: ravion223 <tablettaoson2016@gmail.com>
+Date:   Fri May 10 16:58:03 2024 +0300
+
+    added functionality of creating forum categories, topics and posts to topics
+
+[33mcommit 641481d4ffd08d644f450211b2691e0bc147cc15[m
+Author: ravion223 <tablettaoson2016@gmail.com>
+Date:   Thu May 9 22:30:14 2024 +0300
+
+    Added field title to Post model in forum application, also created views for showing posts and post content
+
+[33mcommit 550195e0043a2f85e24b6c31627277c049770d56[m
+Author: ravion223 <tablettaoson2016@gmail.com>
+Date:   Thu May 9 22:08:54 2024 +0300
+
+    Did views for showing categories and topics
+
+[33mcommit 156e87b7f6cfc91bc4fef818b13e72d1e4eebf56[m
+Author: ravion223 <tablettaoson2016@gmail.com>
+Date:   Thu May 9 12:23:51 2024 +0300
+
+    Created app 'forum' and created models for this app
+
+[33mcommit 400deb9850db50b0defd17e37341ab3e825d4e60[m
+Author: mariykamak <mkondratuk228@gmail.com>
+Date:   Sat May 11 14:14:08 2024 +0300
+
+    Create sidebar menu and auth_system
+
+[33mcommit 5cfd2b841d7fc3f94123f94fa6bfe355be4b8e65[m
+Merge: 9b981fc a3eeebf
+Author: mkondratyuk <mkondratuk228@gmail.com>
+Date:   Sat May 11 13:31:16 2024 +0300
+
+    Merge pull request #1 from Moonvynl/develop
+    
+    Develop
+
+[33mcommit a3eeebf2842004c98e24ea8880635e88e355048a[m
+Author: mariykamak <mkondratuk228@gmail.com>
+Date:   Sat May 11 13:29:41 2024 +0300
+
+    ...
+
+[33mcommit 5022fc5fa166c6e90178e7a8665018d4c83e9e31[m
+Author: mariykamak <mkondratuk228@gmail.com>
+Date:   Sat May 11 13:21:13 2024 +0300
+
+    ...
+
+[33mcommit 75e5835e4e2a74089fc6e9ebf0d3025341eb1c5c[m
+Author: mariykamak <mariykamak2008@gmail.com>
+Date:   Sat May 11 11:58:31 2024 +0300
+
+    create sidebar menu and auth_system
+
+[33mcommit d84d2bcf84853867a1a13b6b0055f816524c1edb[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Fri May 10 15:44:06 2024 +0300
+
+    Added to `core/urls.py` urls from calendar-app
+
+[33mcommit 78de358e93d5973994c205f8c910ce17545b5b66[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Fri May 10 15:41:46 2024 +0300
+
+    Created calendar html file
+
+[33mcommit 59d56d477422ffdb58705b1ff5ecdf962f04cf31[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Fri May 10 15:40:19 2024 +0300
+
+    Registered to admin model `Event`
+
+[33mcommit 5bd174b4e05088bfb556314a71368096cb5cb0b8[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Fri May 10 15:39:43 2024 +0300
+
+    Created file `urls.py` and added url to calendar
+
+[33mcommit 47901c860f8bff098ec5e040ed7913dac5368185[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Fri May 10 15:38:49 2024 +0300
+
+    Created custom tags for displaying calendar
+
+[33mcommit 64a26601156a091447dbb8ede8ad43dbde1cb817[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Fri May 10 15:36:26 2024 +0300
+
+    Created `CalendarEventListView`
+
+[33mcommit c9f4ed885ce6b142f4c26badac24eaa261ed60c0[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Fri May 10 15:35:26 2024 +0300
+
+    Made migrations
+
+[33mcommit 679b99c7dc692a71b97bf1e7cd440fe0c0f1ff13[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Fri May 10 15:34:22 2024 +0300
+
+    Created model `Event`
+
+[33mcommit 625b719486ca14f0019e68ad0e8104a2c3d7e070[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Fri May 10 15:33:03 2024 +0300
+
+    Added to `settings.py` app `calendar_events`
+
+[33mcommit 03c720533108460e0bcce29b223c72bf2e09425c[m
+Author: Michael322312 <zomisha0808@gmail.com>
+Date:   Fri May 10 15:32:03 2024 +0300
+
+    Created django-app `calendar_events`
+
+[33mcommit 9b981fc4c62f157115d2eb688ccdb40fb851d359[m
+Author: David <david2009mn@gmail.com>
+Date:   Tue May 7 22:51:21 2024 +0300
+
+    Added templates and fixed mistakes
+
+[33mcommit b4f2eacdc694a8924be91af154c216922019a5c2[m
+Author: David <david2009mn@gmail.com>
+Date:   Tue May 7 22:35:47 2024 +0300
+
+    Added auth sys templates + auth sys urls
+
+[33mcommit 031bdb899f3e87f005e92752660ea1aebb66aad4[m
+Author: David <david2009mn@gmail.com>
+Date:   Tue May 7 22:19:01 2024 +0300
+
+    Added register view
+
+[33mcommit ba04d01a1f3b10c1c58276a354a18f81011a986b[m
+Author: David <david2009mn@gmail.com>
+Date:   Tue May 7 22:17:04 2024 +0300
+
+    Added register form
+
+[33mcommit 438fbafd8ecac99ae9cef6a82dd8ba60228a08d4[m
+Author: David <david2009mn@gmail.com>
+Date:   Tue May 7 22:12:55 2024 +0300
+
+    Added CustomUser model
+
+[33mcommit 6e825f4071a37e0fc45aa4d6a7a549b3903739bc[m
+Author: David <david2009mn@gmail.com>
+Date:   Tue May 7 21:55:45 2024 +0300
+
+    Added static folder
+
+[33mcommit 423cb77c399c71231ad82b17129d532fcf6648f0[m
+Author: David <david2009mn@gmail.com>
+Date:   Sat May 4 13:17:08 2024 +0300
+
+    Added media, timezone, templates dir
+
+[33mcommit 94145ad98ae9ca561057a70ffaf90923f1ead189[m
+Author: David <david2009mn@gmail.com>
+Date:   Sat May 4 13:05:09 2024 +0300
+
+    Created django project
+
+[33mcommit 850fe469d0b59fbef1687f6e633895c81ea4ba3c[m
+Author: Moonvynl <127021082+Moonvynl@users.noreply.github.com>
+Date:   Sat May 4 12:59:58 2024 +0300
+
+    Initial commit
