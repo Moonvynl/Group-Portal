@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'menu',
     'calendar_events',
     'forum',
 ]
@@ -121,7 +122,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 AUTH_USER_MODEL = 'auth_system.CustomUser'
