@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <h2>Are you sure you want to delete this event?</h2>
+        <div class="fs-6 fw-lighter">(This action cannot be canceled)</div>
+        <br>
+        <p>{{ event }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete" class="btn btn-danger">
+        </form>
+    </div>
+{% endblock content %}
