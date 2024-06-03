@@ -40,7 +40,7 @@ def view_date_events(request, day=None, month=None, year=None):
         except:
             return HttpResponseBadRequest("Date not found") 
     
-    paginator = Paginator(selected_date_events(date), 3)
+    paginator = Paginator(selected_date_events(date), 2)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
