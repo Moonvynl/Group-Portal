@@ -29,6 +29,15 @@ class EventCreateForm(forms.ModelForm):
             'meeting_url': forms.TextInput(attrs={'class': 'form-control'})
         }
 
+        labels = {
+            'name': 'Назва події',
+            'description': 'Опис',
+            'scheduled_date': 'Дата події',
+            'scheduled_time': 'Час події (Окрім 00:00)',
+            'meeting_url': 'Посилання на онлайн-зустріч',
+        }
+
+
     def __init__(self, *args, **kwargs):
         super(EventCreateForm, self).__init__(*args, **kwargs)
         self.fields['scheduled_date'].initial = timezone.now().date()
