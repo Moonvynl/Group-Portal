@@ -1,17 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib import messages
-from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.http import HttpResponseBadRequest
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView, ListView, DetailView, DeleteView, UpdateView
+from django.views.generic import CreateView, DeleteView, UpdateView
 from calendar_events.models import Event
 from django.utils import timezone
 from django.template.defaulttags import register
 from calendar_events.events_func import next_date, previous_date, selected_date_events, month_events
 from calendar_events.forms import EventCreateForm
 from django.utils import timezone
+from django.core.paginator import Paginator
 import calendar
 import datetime
-from auth_system.models import CustomUser
 
 
 root = "calendar_events/"
@@ -39,12 +39,16 @@ def view_date_events(request, day=None, month=None, year=None):
             date = datetime.datetime(year, month, day)
         except:
             return HttpResponseBadRequest("Date not found") 
+    
+    paginator = Paginator(selected_date_events(date), 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     context = {
         "calendar": calendar.Calendar().monthdays2calendar(date.year, date.month),
         "today": timezone.now(),
         "date": date,
-        "selected_date_events": selected_date_events(date),
+        "selected_date_events": page_obj,
         "events_month": month_events(date),
         "month_name": months[date.month-1],
         "next": next_date(date),
