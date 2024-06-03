@@ -92,14 +92,36 @@
                                     <div class="card-header">
                                         {{event.name}}
                                         {{event.scheduled}}
-                                        {% if event.scheduled_time%}
+                                        {% if event.time != '00:00'%}
                                             {{event.time}}
                                         {%endif%}
                                         
                                     </div>
                                     <div class="card-body">
-                                        {%if event.description%}
-                                            Опис: {{event.description}}
+                                        {%if event.description %}
+                                            {% if event.description|length > 13 %}
+                                                <button type="button" class="btn btn-outline-primary mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                    Опис
+                                                </button>
+                                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h1 class="modal-title fs-5" id="staticBackdropLabel">Опис</h1>
+                                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            {{event.description}}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрити</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                            {%else%}
+                                                Опис: {{event.description}}
+                                            {%endif%}
                                             <br>
                                         {%endif%}
 
@@ -113,7 +135,7 @@
                                             </a>
                                             <br>
                                         {%endif%}
-                                        {% if event.event_date%}
+                                        {% if event.time != '00:00' %}
                                             Час події: {{event.time}}
                                         {%endif%}
                                     </div>
