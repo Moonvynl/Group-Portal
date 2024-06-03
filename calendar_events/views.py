@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponseBadRequest
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, UpdateView
+from django.views.generic import CreateView, DeleteView, UpdateView, ListView
 from calendar_events.models import Event
 from django.utils import timezone
 from django.template.defaulttags import register
@@ -60,6 +60,12 @@ def view_date_events(request, day=None, month=None, year=None):
         context=context,
         request=request
     )
+
+class EventListView(ListView):
+    model = Event
+    template_name = root + "event/event_list.html"
+    context_object_name = 'events'
+    paginate_by = 7
 
 
 class EventCreateView(CreateView):
