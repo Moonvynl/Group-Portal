@@ -5,8 +5,6 @@ from menu.views import *
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
-    path('admin/', admin.site.urls),
-    path('', IndexView.as_view(), name='index'),
 ]
 
 app_name = 'menu'
