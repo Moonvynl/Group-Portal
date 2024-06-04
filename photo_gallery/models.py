@@ -5,6 +5,7 @@ from django.dispatch.dispatcher import receiver
 # Create your models here.
 
 class PhotoPost(models.Model):
+    authorized = models.BooleanField(default=False)
     author = models.ForeignKey(
         CustomUser,
         on_delete = models.CASCADE,
@@ -18,15 +19,6 @@ class PhotoPost(models.Model):
 
     class Meta:
         ordering = ['upload_date']
-
-
-class PhotoAuth(models.Model):
-    authorized = models.BooleanField(default=False)
-    photo_post = models.ForeignKey(
-        PhotoPost,
-        on_delete = models.CASCADE,
-        related_name='auths'
-    )
 
 
 @receiver(pre_delete, sender=PhotoPost)
