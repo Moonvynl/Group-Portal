@@ -25,8 +25,10 @@ class PhotoAuth(models.Model):
     photo_post = models.ForeignKey(
         PhotoPost,
         on_delete = models.CASCADE,
-        related_name='auths'
+        related_name='auths',
+        unique=True
     )
+
 
 
 @receiver(pre_delete, sender=PhotoPost)
