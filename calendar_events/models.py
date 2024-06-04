@@ -1,5 +1,6 @@
 from django.db import models
 from auth_system.models import CustomUser
+from django.utils import timezone
 
 class Event(models.Model):
     creator = models.ForeignKey(
@@ -11,8 +12,8 @@ class Event(models.Model):
     name = models.CharField(max_length=63)
     description = models.TextField(blank=True, null=True)
 
-    scheduled_date = models.DateField(null=True, blank=True)
-    scheduled_time = models.TimeField(null=True, blank=True)
+    scheduled_date = models.DateField(default=timezone.now)
+    scheduled_time = models.TimeField(null=True)
     date_created = models.DateTimeField(auto_now=True)
 
     meeting_url = models.URLField(blank=True, null=True)

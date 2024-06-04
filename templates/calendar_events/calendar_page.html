@@ -11,9 +11,15 @@
             margin: auto;
         }
     </style>
+    <p class="d-inline-flex gap-1 m-4">
+        <a href="{%url 'calendar_event:calendar_events'%}" class="btn btn-primary disabled">Календар</a>
+        <a href="{%url 'calendar_event:event_list'%}" class="btn btn-primary">Список подій</a>
+        <a href="{%url 'calendar_event:create_event'%}" class="btn btn-primary">Створити подію</a>
+    </p>
+    <br>
     <br>
     <div class="container-fluid text-center">
-        <div class="row calendar-container">
+        <div class="row calendar-container ms-5">
             <div class="col-md-8 mb-3 border rounded-3 pb-2">
                 <div class="row text-center p-3 bg-primary rounded-3 text-white">
                     <div class="col">
@@ -87,18 +93,40 @@
                     <div class="card-body">
                         {% if selected_date_events %}
                             {% for event in selected_date_events %}
-                                <div class="card text-start">
+                                <div class="card text-start mb-1">
                                     <div class="card-header">
                                         {{event.name}}
                                         {{event.scheduled}}
-                                        {% if event.event_date%}
+                                        {% if event.time != '00:00'%}
                                             {{event.time}}
                                         {%endif%}
                                         
                                     </div>
                                     <div class="card-body">
-                                        {%if event.description%}
-                                            Опис: {{event.description}}
+                                        {%if event.description %}
+                                            {% if event.description|length > 13 %}
+                                                <button type="button" class="btn btn-outline-primary mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                    Опис
+                                                </button>
+                                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h1 class="modal-title fs-5" id="staticBackdropLabel">Опис</h1>
+                                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            {{event.description}}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрити</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                            {%else%}
+                                                Опис: {{event.description}}
+                                            {%endif%}
                                             <br>
                                         {%endif%}
 
@@ -112,7 +140,7 @@
                                             </a>
                                             <br>
                                         {%endif%}
-                                        {% if event.event_date%}
+                                        {% if event.time != '00:00' %}
                                             Час події: {{event.time}}
                                         {%endif%}
                                     </div>
@@ -132,6 +160,16 @@
                                     </div>
                                 </div>
                             {%endfor%}
+                            {% if selected_date_events.paginator.page_range|length > 1%}
+                                
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination ms-1 mt-3">
+                                        {% for page_num in selected_date_events.paginator.page_range %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </nav> 
+                            {%endif%}
                         {% else %}
                             Подій не знайдено
                         {% endif %}
