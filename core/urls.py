@@ -26,4 +26,5 @@ urlpatterns = [
     path('', include('calendar_events.urls')),
     path('', include('menu.urls')),
     path('', include('forum.urls')),
+    path('', include('adverts.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
