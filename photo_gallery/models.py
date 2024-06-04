@@ -11,9 +11,9 @@ class PhotoPost(models.Model):
         related_name='photo_posts'
     )
     title = models.CharField(max_length=23, null=True)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     image = models.ImageField(blank=True, upload_to="photo-gallery/", null=True)
-    likes = models.ManyToManyField(CustomUser, related_name="liked_photo_posts")
+    likes = models.ManyToManyField(CustomUser, related_name="liked_photo_posts", null=True, blank=True)
     upload_date = models.DateTimeField(auto_now=True)
 
     class Meta:
