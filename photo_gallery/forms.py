@@ -35,9 +35,12 @@ class PhotoAuthForm(forms.ModelForm):
         ]
 
         widgets = {
-            'photo_post': forms.TextInput(attrs={'class': 'form-control'})
+            'photo_post': forms.Select(attrs={'class': 'form-control'})
         }
 
         labels = {
             'photo_post': 'Пост'
         }
+    def __init__(self, *args, **kwargs):
+        super(PhotoAuthForm, self).__init__(*args, **kwargs)
+        self.fields['photo_post'].initial = self.initial['pk']
