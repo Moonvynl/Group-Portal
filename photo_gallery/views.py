@@ -14,7 +14,7 @@ root = 'photo_gallery/'
 app_tag = 'photo_post:'
 
 class PhotoPostListView(ListView):
-    model = PhotoPost
+    model = PhotoAuth
     template_name = root + 'photo_post/list_view.html'
     context_object_name = 'photo_posts'
 
