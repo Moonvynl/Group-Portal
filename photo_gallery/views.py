@@ -18,6 +18,11 @@ class PhotoPostListView(ListView):
     template_name = root + 'photo_post/list_view.html'
     context_object_name = 'photo_posts'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['photo_posts'] = PhotoAuth.objects.filter(authorized=True).all()
+        return context
+
 
 class PhotoPostCreateView(CreateView):
     model = PhotoPost
@@ -40,4 +45,9 @@ class PhotoAuthCreateView(CreateView):
         form.instance.author = self.request.user
         form.instance.authorized = False
         return super().form_valid(form)
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['pk'] = PhotoAuth.objects.get(id=self.kwargs['pk'])
+        return initial
 
