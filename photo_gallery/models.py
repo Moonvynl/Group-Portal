@@ -16,6 +16,15 @@ class PhotoPost(models.Model):
     likes = models.ManyToManyField(CustomUser, related_name="liked_photo_posts")
 
 
+class PhotoAuth(models.Model):
+    authorized = models.BooleanField()
+    photo_post = models.ForeignKey(
+        PhotoPost,
+        on_delete = models.CASCADE,
+        related_name='auths'
+    )
+
+
 @receiver(pre_delete, sender=PhotoPost)
 def image_model_delete(sender, instance, **kwargs):
     if instance.image.name:
