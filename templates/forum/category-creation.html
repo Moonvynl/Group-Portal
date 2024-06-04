@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% block content %}
     <div class="container">
         <div class="row justify-content-center">
@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">Category Creation</h2>
-                        <form method="post" action="{% url 'create-category' %}">
+                        <form method="post" action="{% url 'forum:create-category' %}">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <button type="submit" class="btn btn-primary">Create</button>

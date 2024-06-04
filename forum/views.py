@@ -96,7 +96,7 @@ class TopicsPostsView(View):
             post.topic = topic
             post.save()
             topic.posts.add(post)
-            return redirect('posts', topic_id=topic_id)
+            return redirect('forum:posts', topic_id=topic_id)
         
         return render(
             request,
@@ -120,7 +120,7 @@ class CategoryCreateView(CreateView):
     model = Category
     form_class = CategoryCreationForm
     template_name = 'forum/category-creation.html'
-    success_url = reverse_lazy('all-categories')
+    success_url = reverse_lazy('forum:all-categories')
 
 
 class TopicCreateView(View):
@@ -159,7 +159,7 @@ class TopicCreateView(View):
             topic.category = category
             topic.save()
             category.topics.add(topic)
-            return redirect('topics', category_id=category_id)
+            return redirect('forum:topics', category_id=category_id)
         
         return render(
             request,
@@ -172,7 +172,7 @@ class CategoryUpdateView(UpdateView):
     model = Category
     form_class = CategoryUpdateForm
     template_name = 'forum/category-update.html'
-    success_url = reverse_lazy('all-categories')
+    success_url = reverse_lazy('forum:all-categories')
 
 
 class TopicUpdateView(CreatorIsOwnerMixin, UpdateView):
@@ -182,7 +182,7 @@ class TopicUpdateView(CreatorIsOwnerMixin, UpdateView):
     
     def get_success_url(self) -> str:
         category_id = self.object.category_id
-        return reverse_lazy('topics', kwargs={'category_id': category_id})
+        return reverse_lazy('forum:topics', kwargs={'category_id': category_id})
     
 
 class PostUpdateView(AuthorIsOwnerMixin, UpdateView):
@@ -198,13 +198,13 @@ class PostUpdateView(AuthorIsOwnerMixin, UpdateView):
     
     def get_success_url(self) -> str:
         topic_id = self.object.topic_id
-        return reverse_lazy('posts', kwargs={'topic_id': topic_id})
+        return reverse_lazy('forum:posts', kwargs={'topic_id': topic_id})
     
 
 @method_decorator(user_passes_test(is_user_moderator_or_admin), name='dispatch')
 class CategoryDeleteView(DeleteView):
     model = Category
-    success_url = reverse_lazy('all-categories')
+    success_url = reverse_lazy('forum:all-categories')
 
 
 class TopicDeleteView(CreatorIsOwnerMixin, DeleteView):
@@ -212,7 +212,7 @@ class TopicDeleteView(CreatorIsOwnerMixin, DeleteView):
 
     def get_success_url(self) -> str:
         category_id = self.object.category_id
-        return reverse_lazy('topics', kwargs={'category_id': category_id})
+        return reverse_lazy('forum:topics', kwargs={'category_id': category_id})
     
 
 class PostDeleteView(AuthorIsOwnerMixin, DeleteView):
@@ -220,4 +220,4 @@ class PostDeleteView(AuthorIsOwnerMixin, DeleteView):
 
     def get_success_url(self) -> str:
         topic_id = self.object.topic_id
-        return reverse_lazy('posts', kwargs={'topic_id': topic_id})
+        return reverse_lazy('forum:posts', kwargs={'topic_id': topic_id})

@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% block content %}
 <div class="container mt-4">
     {% if request.user.access == 'moder' or request.user.is_staff %}
-        <a href="{% url 'advert-create' %}" class="btn btn-primary mb-3">Create advert</a>
+        <a href="{% url 'adverts:advert-create' %}" class="btn btn-primary mb-3">Create advert</a>
     {% endif %}
     <div class="row">
         {% for advert in adverts %}
@@ -13,14 +13,14 @@
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="{% url 'advert-detail' advert.id %}">{{ advert.title }}</a>
+                            <a href="{% url 'adverts:advert-detail' advert.id %}">{{ advert.title }}</a>
                         </h5>
                         <p class="card-text">{{ advert.shorten_content }}</p>
                     </div>
                     <div class="card-footer text-right">
                         {% if request.user.access == 'moder' or request.user.is_staff %}
-                            <a href="{% url 'advert-update' advert.id %}" class="btn btn-warning btn-sm">Update</a>
-                            <a href="{% url 'advert-delete' advert.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{% url 'adverts:advert-update' advert.id %}" class="btn btn-warning btn-sm">Update</a>
+                            <a href="{% url 'adverts:advert-delete' advert.id %}" class="btn btn-danger btn-sm">Delete</a>
                         {% endif %}
                     </div>
                 </div>
