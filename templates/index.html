@@ -350,12 +350,12 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <!--<img src="logo.png" alt="">-->
+                    <img src="/static/img/LogikaLogo.png" alt="">
                 </span>
 
                 <div class="text logo-text">
-                    <span class="name">Group portal</span>
-                    <span class="profession">Logika School</span>
+                    <span class="name">Group portal portal</span>
+                    <span class="profession">Logika School School</span>
                 </div>
             </div>
 
@@ -372,7 +372,7 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{% url 'menu:index' %}">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Головна</span>
                         </a>
@@ -386,7 +386,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{% url 'forum:all-categories' %}">
                             <i class='bx bx-bell icon'></i>
                             <span class="text nav-text">Форум</span>
                         </a>
@@ -407,7 +407,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{% url 'adverts:adverts-list' %}">
                             <span class="icon"><i class='bx bx-message-square-dots'></i></span>
                             <span class="text nav-text">Оголошення</span>
                         </a>
@@ -436,7 +436,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{% url 'calendar_event:calendar_events' %}">
                             <span class="icon"><i class='bx bx-calendar'></i></span>
                             <span class="text nav-text">Календар</span>
                         </a>
@@ -448,14 +448,17 @@
             <div class="bottom-content">
                 {% if user.is_authenticated %}
                     <li class="">
-                        <a href="logout">
-                            <i class='bx bx-log-out icon'></i>
-                            <span class="text nav-text">Logout</span>
-                        </a>
+                        <form action="{% url 'auth_system:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">
+                                <i class='bx bx-log-out icon'></i>
+                                <span class="text nav-text">Logout</span>
+                            </button>
+                        </form>
                     </li>
                 {% else %}
                     <li class="">
-                        <a href="login">
+                        <a href="{% url 'auth_system:login' %}">
                             <i class='bx bx-log-in icon'></i>
                             <span class="text nav-text">Login/Register</span>
                         </a>
@@ -485,6 +488,9 @@
         <div class="user-info">
             {{ user.username }}
         </div>
+        {%block content%}
+            
+        {%endblock%}
 
     </section>
 

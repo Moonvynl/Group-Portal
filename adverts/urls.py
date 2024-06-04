@@ -10,3 +10,5 @@ urlpatterns = [
     path('<int:pk>/update/', AdvertUpdateView.as_view(), name='advert-update'),
     path('<int:pk>/delete/', AdvertDeleteView.as_view(), name='advert-delete')
 ]
+
+app_name = 'adverts'

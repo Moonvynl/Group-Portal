@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+:root {
+    --primary-color: rgba(104,92,254,255);
+    }
+
 body{
+    background-color: var(--primary-color);
+=======
+body{
+<<<<<<< HEAD
+    background-color: rgb(209, 207, 204);
+>>>>>>> 8104b43932d1ccc94a14c63465c13b569b7d01a3
+=======
     background-color: rgb(246, 244, 242);
+>>>>>>> 55d70d6e80e5b475384818985fe419e0fcb1817a
 }
