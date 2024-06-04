@@ -9,6 +9,7 @@
         .calendar-container {
             max-width: 1000px;
             max-height: 500px;
+            min-width: 400px;
             margin: auto;
         }
     </style>
@@ -20,8 +21,8 @@
     <br>
     <br>
     <div class="container-fluid text-center">
-        <div class="row calendar-container">
-            <div class="col-md-8 mb-3 border rounded-3 pb-2 bg-white " >
+        <div class="row calendar-container ms-3">
+            <div class="col-md-8 mb-3 border rounded-3 pb-2 bg-white ">
                 <div class="row text-center p-3 bg-primary rounded-3 text-white">
                     <div class="col">
                         <a href="{% url 'calendar_event:calendar_date' year=previous.year month=previous.month day=previous.day%}" class="text-white">
