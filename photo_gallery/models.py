@@ -14,10 +14,14 @@ class PhotoPost(models.Model):
     description = models.TextField()
     image = models.ImageField(blank=True, upload_to="photo-gallery/", null=True)
     likes = models.ManyToManyField(CustomUser, related_name="liked_photo_posts")
+    upload_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['upload_date']
 
 
 class PhotoAuth(models.Model):
-    authorized = models.BooleanField()
+    authorized = models.BooleanField(default=False)
     photo_post = models.ForeignKey(
         PhotoPost,
         on_delete = models.CASCADE,
