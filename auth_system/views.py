@@ -4,16 +4,13 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView
-
-class TestTemplateView(TemplateView):
-    template_name = 'base.html'
+from django.views.generic import CreateView
 
 
 class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = "auth_sys/register.html"
-    success_url = reverse_lazy("auth_system:test")
+    success_url = reverse_lazy("menu:index")
 
     def form_valid(self, form):
         user = form.save()
