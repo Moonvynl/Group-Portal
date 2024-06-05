@@ -41,7 +41,7 @@ class PhotoAuthListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['photo_posts'] = PhotoAuth.objects.filter(authorized=True).all()
+        context['photo_posts'] = PhotoAuth.objects.filter(status='1').all()
         return context
 
 
