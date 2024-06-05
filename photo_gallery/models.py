@@ -10,25 +10,31 @@ class PhotoPost(models.Model):
         on_delete = models.CASCADE,
         related_name='photo_posts'
     )
-    title = models.CharField(max_length=23, null=True)
+    title = models.CharField(max_length=23, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to="photo-gallery/")
     likes = models.ManyToManyField(CustomUser, related_name="liked_photo_posts", blank=True)
     upload_date = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['upload_date']
+        ordering = ['-upload_date']
 
 
 class PhotoAuth(models.Model):
+
     authorized = models.BooleanField(default=False)
+
     photo_post = models.ForeignKey(
         PhotoPost,
         on_delete = models.CASCADE,
         related_name='auths',
         unique=True
     )
+    details = models.CharField(max_length=63, null=True, blank=True)
+    upload_date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-upload_date', 'authorized']
 
 
 @receiver(pre_delete, sender=PhotoPost)
