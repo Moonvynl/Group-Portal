@@ -21,8 +21,17 @@ class PhotoPost(models.Model):
 
 
 class PhotoAuth(models.Model):
-
-    authorized = models.BooleanField(default=False)
+    STATUS_CHOICES = [
+        ('1', 'Підтверджено'),
+        ('0', 'Йде перевірка'),
+        ('-1', 'Відхилино')
+    ]
+    
+    status = models.CharField(
+        max_length=31,
+        choices=STATUS_CHOICES,
+        default="0"
+    )
 
     photo_post = models.ForeignKey(
         PhotoPost,
@@ -34,7 +43,8 @@ class PhotoAuth(models.Model):
     upload_date = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-upload_date', 'authorized']
+        ordering = ['status', '-upload_date']
+
 
 
 @receiver(pre_delete, sender=PhotoPost)
