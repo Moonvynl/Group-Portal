@@ -9,11 +9,32 @@ from django.template.defaulttags import register
 from django.utils import timezone
 from django.core.paginator import Paginator
 from photo_gallery.forms import PhotoPostForm, PhotoAuthForm
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 
 root = 'photo_gallery/'
 app_tag = 'photo_post:'
 
-class PhotoPostListView(ListView):
+
+@method_decorator(staff_member_required, name='dispatch')
+class StaffPostSubmitListView(ListView):
+    model = PhotoAuth
+    template_name = root + 'staff_submit.html'
+    context_object_name = 'auth_requests'
+
+
+class PhotoUserListView(ListView):
+    model = PhotoPost
+    template_name = root + 'user_photos.html'
+    context_object_name = 'photo_posts'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['photo_posts'] = PhotoPost.objects.filter(author=self.request.user).all()
+        return context
+
+
+class PhotoAuthListView(ListView):
     model = PhotoAuth
     template_name = root + 'photo_post/list_view.html'
     context_object_name = 'photo_posts'
