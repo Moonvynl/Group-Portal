@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'menu',
     'calendar_events',
     'forum',
+    'pollsapp'
 ]
 
 MIDDLEWARE = [
