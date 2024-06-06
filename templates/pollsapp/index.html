@@ -1,7 +1,5 @@
 {% extends 'index.html' %}
 {% block content %}
-    <div class="container">
-        {% block content %}
         <h3><strong>Django Polls Application</strong></h3>
         <div class="list-group">
             {% for question in questions %}
@@ -10,7 +8,5 @@
             </a>
             {% endfor %}
         </div>
-        {% endblock %}
-    </div>
 
 {% endblock %}
