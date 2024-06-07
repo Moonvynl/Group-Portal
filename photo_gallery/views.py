@@ -4,17 +4,37 @@ from django.http import HttpResponseBadRequest
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView
 from photo_gallery.models import PhotoPost, PhotoAuth
-from django.utils import timezone
 from django.template.defaulttags import register
-from django.utils import timezone
 from django.core.paginator import Paginator
 from photo_gallery.forms import PhotoPostForm, PhotoAuthForm, PhotoAuthStaffForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from photo_gallery.mixins import UserIsOwnerMixin
+from django.shortcuts import redirect, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 root = 'photo_gallery/'
 app_tag = 'photo_post:'
+
+
+class PhotoPostLike(UpdateView, LoginRequiredMixin):
+    model = PhotoPost
+
+    def get_object(self):
+        post_id = self.kwargs.get("pk")
+        return get_object_or_404(PhotoPost, pk=post_id)
+
+    def post(self, request, *args, **kwargs):
+        post = self.get_object()
+        user = request.user
+        if user in post.likes.all():
+            post.likes.remove(user)
+        else:
+            post.likes.add(user)
+        post.save()
+        return HttpResponseRedirect(reverse_lazy("photo_post:photo_posts"))
 
 
 class PhotoPostDeleteView(DeleteView, UserIsOwnerMixin):
