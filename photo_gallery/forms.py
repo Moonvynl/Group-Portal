@@ -44,3 +44,23 @@ class PhotoAuthForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PhotoAuthForm, self).__init__(*args, **kwargs)
         self.fields['photo_post'].initial = self.initial['pk']
+
+
+class PhotoAuthStaffForm(forms.ModelForm):
+    class Meta:
+        model = PhotoAuth
+
+        fields = [
+            'status',
+            'details'
+        ]
+
+        widgets = {
+            'status': forms.Select(attrs={'class': 'form-control'}),
+            'details': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+        labels = {
+            'status': 'Статус публікації',
+            'details': 'Коментар'
+        }

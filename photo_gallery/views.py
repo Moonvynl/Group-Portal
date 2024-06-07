@@ -8,7 +8,7 @@ from django.utils import timezone
 from django.template.defaulttags import register
 from django.utils import timezone
 from django.core.paginator import Paginator
-from photo_gallery.forms import PhotoPostForm, PhotoAuthForm
+from photo_gallery.forms import PhotoPostForm, PhotoAuthForm, PhotoAuthStaffForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 
@@ -21,6 +21,19 @@ class StaffPostSubmitListView(ListView):
     model = PhotoAuth
     template_name = root + 'staff_submit.html'
     context_object_name = 'auth_requests'
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class StaffPostUpdateView(UpdateView):
+    model = PhotoAuth
+    template_name = root + "staff_auth_form.html"
+    success_url = reverse_lazy(app_tag+"post_auth_list")
+    form_class = PhotoAuthStaffForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post'] = PhotoAuth.objects.get(id=self.object.id).photo_post
+        return context
 
 
 class PhotoUserListView(ListView):
