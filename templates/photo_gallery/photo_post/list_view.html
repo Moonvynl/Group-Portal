@@ -39,7 +39,16 @@
                     Створено {{post.photo_post.upload_date}}
                 </div>
             </div>
-
+            <br>
         {%endfor%}
+        {% if photo_posts.paginator.page_range|length > 1 %}  
+            <nav aria-label="Page navigation example">
+                <ul class="pagination ms-1 mt-3">
+                    {% for page_num in photo_posts.paginator.page_range %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav> 
+        {%endif%}
     </div>
 {% endblock %}

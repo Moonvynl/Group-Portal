@@ -25,7 +25,7 @@
             <!-- Button trigger modal -->
             <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal{{post.id}}">
                 <div class="card me-3" style="width: 25rem; min-width: 250px; max-width: 400px;">
-                    <div class="card-body text-start">
+                    <div class="card-body text-start border border-2 {%if post.auths.all.0.status == '3'%} border-warning bg-warning-subtle {%elif post.auths.all.0.status == '2'%} border-danger bg-danger-subtle {%elif post.auths.all.0.status == '1'%} border-success bg-success-subtle{%endif%}">
                         <h5 class="card-title text-start">
                             {{post.title}}
                         </h5>
@@ -50,6 +50,13 @@
                         {%else%}
                             <a href='{% url "photo_post:auth_photo" post.id%}' class="link">Опублікувати</a>
                         {%endif%}
+                        <br>
+
+                        <a href="{% url 'photo_post:delete_confirm' post.id%}" class="btn me-2 btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                            </svg>
+                        </a>
                     </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -70,14 +77,26 @@
                             <div class="card-footer text-body-secondary">
                                 Створено {{post.upload_date}}
                             </div>
+                            
                         </div>
+                        
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                        
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
                     </div>
                 </div>
                 </div>
             </div>
         {%endfor%}
+        {% if photo_posts.paginator.page_range|length > 1 %}  
+            <nav aria-label="Page navigation example">
+                <ul class="pagination ms-1 mt-3">
+                    {% for page_num in photo_posts.paginator.page_range %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav> 
+        {%endif%}
     </div>
 {% endblock %}

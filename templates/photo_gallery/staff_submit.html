@@ -23,10 +23,10 @@
     <br>
     <div class="ms-5" >
         {% for auth_request in auth_requests %}
-            <a class="card" style="width: 25rem;" href="{%url 'photo_post:staff_auth_form' auth_request.id %}">
-                <h4 class="card-title m-2{%if auth_request.status == '0'%} bg-danger {%endif%}">Фото-пост id {{auth_request.photo_post.id}}</h4>
-                <div class="card-body">
-                    <p class="card-text">
+            <a class="card" style="width: 25rem; text-decoration: none;" href="{%url 'photo_post:staff_auth_form' auth_request.id %}">
+                <div class="card-body  border border-2 {%if auth_request.status == '3'%} border-warning bg-warning-subtle {%elif auth_request.status == '2'%} border-danger bg-danger-subtle {%elif auth_request.status == '1'%} border-success bg-success-subtle{%endif%}">
+                    <p class="card-text ">
+                        <h4 class="card-title{%if auth_request.status == '0'%} bg-danger {%endif%}">Фото-пост id {{auth_request.photo_post.id}}</h4>
                         Користувач: {{auth_request.photo_post.author}}
                         <br>
                         Статус перевірки: {{auth_request.get_status_display}}
@@ -38,5 +38,15 @@
             </a>
             <br>
         {%endfor%}
+        {% if paginator.page_range|length > 1 %}  
+            <nav aria-label="Page navigation example">
+                <ul class="pagination ms-1 mt-3">
+                    {% for page_num in paginator.page_range %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav> 
+        {%endif%}
     </div>
+
 {% endblock %}
