@@ -23,14 +23,14 @@ class PhotoPost(models.Model):
 class PhotoAuth(models.Model):
     STATUS_CHOICES = [
         ('1', 'Підтверджено'),
-        ('0', 'Йде перевірка'),
-        ('-1', 'Відхилино')
+        ('3', 'Йде перевірка'),
+        ('2', 'Відхилено')
     ]
     
     status = models.CharField(
         max_length=31,
         choices=STATUS_CHOICES,
-        default="0"
+        default="3"
     )
 
     photo_post = models.ForeignKey(
@@ -43,7 +43,7 @@ class PhotoAuth(models.Model):
     upload_date = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['status', '-upload_date']
+        ordering = ['-status']
 
 
 
