@@ -11,9 +11,16 @@ from django.core.paginator import Paginator
 from photo_gallery.forms import PhotoPostForm, PhotoAuthForm, PhotoAuthStaffForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
+from photo_gallery.mixins import UserIsOwnerMixin
 
 root = 'photo_gallery/'
 app_tag = 'photo_post:'
+
+
+class PhotoPostDeleteView(DeleteView, UserIsOwnerMixin):
+    model = PhotoPost
+    template_name = root+"photo_post/delete_confirm.html"
+    success_url = reverse_lazy("photo_post:user_photos")
 
 
 @method_decorator(staff_member_required, name='dispatch')
@@ -21,6 +28,7 @@ class StaffPostSubmitListView(ListView):
     model = PhotoAuth
     template_name = root + 'staff_submit.html'
     context_object_name = 'auth_requests'
+    paginate_by = 5
 
 
 @method_decorator(staff_member_required, name='dispatch')
@@ -43,7 +51,10 @@ class PhotoUserListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['photo_posts'] = PhotoPost.objects.filter(author=self.request.user).all()
+        paginator = Paginator( PhotoPost.objects.filter(author=self.request.user).all(), 5)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['photo_posts'] = page_obj
         return context
 
 
@@ -54,7 +65,10 @@ class PhotoAuthListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['photo_posts'] = PhotoAuth.objects.filter(status='1').all()
+        paginator = Paginator(PhotoAuth.objects.filter(status='1').all(), 5)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['photo_posts'] = page_obj
         return context
 
 
