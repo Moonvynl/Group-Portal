@@ -1,6 +1,5 @@
 {% extends "index.html" %}
 {% load custom_tags %}
-
 {% block content %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -20,23 +19,30 @@
             </a>
         {%endif%}
     </div>
-    <br>
-    <div class="ms-5" >
-        {% for auth_request in auth_requests %}
-            <a class="card" style="width: 25rem;" href="{%url 'photo_post:staff_auth_form' auth_request.id %}">
-                <h4 class="card-title m-2{%if auth_request.status == '0'%} bg-danger {%endif%}">Фото-пост id {{auth_request.photo_post.id}}</h4>
-                <div class="card-body">
-                    <p class="card-text">
-                        Користувач: {{auth_request.photo_post.author}}
-                        <br>
-                        Статус перевірки: {{auth_request.get_status_display}}
-                    </p>
-                </div>
-                <div class="card-footer text-body-secondary">
-                    {{auth_request.upload_date}}
-                </div>
-            </a>
-            <br>
-        {%endfor%}
+    <div class="row mt-4">
+        <div class="card col-5 ms-5 mt-3" style="width: 25rem;">
+            <div class="card-text ps-2 pt-1 fw-semibold">{{post.author}}</div>
+            <img src="/media/{{post.image}}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text">{{post.description}}</p>
+                <a href="#" class="card-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                    </svg>
+                    {{post.likes|length}}
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Створено {{post.upload_date}}
+            </div>
+        </div>
+        <form method="POST" class="w-50 m-5 col-3">
+            {% csrf_token %}
+                
+                {{form.as_p}}
+                <button type="submit" class="btn btn-primary">Підтвердити</button>
+                
+        </form>
     </div>
 {% endblock %}
