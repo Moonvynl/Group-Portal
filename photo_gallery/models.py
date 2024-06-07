@@ -30,7 +30,7 @@ class PhotoAuth(models.Model):
     status = models.CharField(
         max_length=31,
         choices=STATUS_CHOICES,
-        default="3"
+        default="3",
     )
 
     photo_post = models.ForeignKey(
@@ -43,7 +43,7 @@ class PhotoAuth(models.Model):
     upload_date = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-status']
+        ordering = ['-status', '-upload_date']
 
 
 
