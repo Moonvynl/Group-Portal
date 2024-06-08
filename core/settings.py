@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'calendar_events',
     'forum',
     'adverts',
+    'photo_gallery',
 ]
 
 MIDDLEWARE = [

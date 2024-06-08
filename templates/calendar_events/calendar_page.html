@@ -1,5 +1,5 @@
 {% extends 'index.html' %}
-{% load custom_tags%}
+{% load custom_tags %}
 
 
 {% block content %}
@@ -9,19 +9,20 @@
         .calendar-container {
             max-width: 1000px;
             max-height: 500px;
+            min-width: 400px;
             margin: auto;
         }
     </style>
-    <p class="d-inline-flex gap-1 m-4">
-        <a href="{%url 'calendar_event:calendar_events'%}" class="btn btn-primary disabled">Календар</a>
+    <p class="d-inline-flex gap-1 ms-5">
+        <a href="{%url 'calendar_event:calendar_events'%}" class="btn btn-primary ">Календар</a>
         <a href="{%url 'calendar_event:event_list'%}" class="btn btn-primary">Список подій</a>
         <a href="{%url 'calendar_event:create_event'%}" class="btn btn-primary">Створити подію</a>
     </p>
     <br>
     <br>
     <div class="container-fluid text-center">
-        <div class="row calendar-container ms-5">
-            <div class="col-md-8 mb-3 border rounded-3 pb-2">
+        <div class="row calendar-container ms-3">
+            <div class="col-md-8 mb-3 border rounded-3 pb-2 bg-white ">
                 <div class="row text-center p-3 bg-primary rounded-3 text-white">
                     <div class="col">
                         <a href="{% url 'calendar_event:calendar_date' year=previous.year month=previous.month day=previous.day%}" class="text-white">
