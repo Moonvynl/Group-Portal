@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 
 class RegisterView(CreateView):
@@ -23,5 +23,3 @@ class RegisterView(CreateView):
                 return redirect("auth_system:login")
 
         return super().form_valid(form)
-
-

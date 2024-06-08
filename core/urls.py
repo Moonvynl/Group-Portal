@@ -27,4 +27,5 @@ urlpatterns = [
     path('', include('menu.urls')),
     path('', include('forum.urls')),
     path('', include('adverts.urls')),
+    path('', include('user.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
