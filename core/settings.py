@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'forum',
     'adverts',
     'user',
+    'photo_gallery',
 ]
 
 MIDDLEWARE = [
