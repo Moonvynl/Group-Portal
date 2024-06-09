@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -394,16 +395,9 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{% url 'polls:index' %}">
                             <i class='bx bx-pie-chart-alt icon'></i>
                             <span class="text nav-text">Опитування</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Голосування</span>
                         </a>
                     </li>
 
@@ -411,14 +405,6 @@
                         <a href="{% url 'adverts:adverts-list' %}">
                             <span class="icon"><i class='bx bx-message-square-dots'></i></span>
                             <span class="text nav-text">Оголошення</span>
-                        </a>
-                    </li>
-
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <span class="icon"><i class='bx bx-copy-alt'></i></span>
-                            <span class="text nav-text">Матеріали</span>
                         </a>
                     </li>
 

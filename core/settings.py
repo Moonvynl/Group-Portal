@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'adverts',
     'user',
     'photo_gallery',
+    'pollsapp',
+
 ]
 
 MIDDLEWARE = [
