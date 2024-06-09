@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title">Category update</h2>
-                    <form method="post" action="{% url 'update-category' category.id %}">
+                    <form method="post" action="{% url 'forum:update-category' category.id %}">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button class="btn btn-primary" type="submit">Update</button>

@@ -45,7 +45,7 @@ class PostCreationForm(forms.ModelForm):
         }
 
         widgets = {
-            'content': forms.TextInput(attrs={'class': 'form-control'})
+            'content': forms.Textarea(attrs={'class': 'form-control'})
         }
 
 
@@ -93,5 +93,5 @@ class PostUpdateForm(forms.ModelForm):
         }
 
         widgets = {
-            'content': forms.TextInput(attrs={'class': 'form-control'})
+            'content': forms.Textarea(attrs={'class': 'form-control'})
         }
