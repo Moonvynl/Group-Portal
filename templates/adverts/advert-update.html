@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% block content %}
 <div class="container mt-4">
     <h2>Update Advert</h2>
-    <form method="post" action="{% url 'advert-update' advert.pk %}" enctype="multipart/form-data">
+    <form method="post" action="{% url 'adverts:advert-update' advert.pk %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Update</button>

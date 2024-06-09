@@ -55,7 +55,7 @@ class AdvertCreateView(View):
         if form.is_valid():
             form.instance.author_id = self.request.user.id
             advert = form.save()
-            return redirect('adverts-list')
+            return redirect('adverts:adverts-list')
         
         return render(
             request,
@@ -69,11 +69,11 @@ class AdvertUpdateView(UpdateView):
     model = Advert
     form_class = AdvertUpdateForm
     template_name = 'adverts/advert-update.html'
-    success_url = reverse_lazy('adverts-list')
+    success_url = reverse_lazy('adverts:adverts-list')
 
 
 @method_decorator(user_passes_test(is_user_admin_or_moderator), name='dispatch')
 class AdvertDeleteView(DeleteView):
     model = Advert
     template_name = 'adverts/advert-delete.html'
-    success_url = reverse_lazy('adverts-list')
+    success_url = reverse_lazy('adverts:adverts-list')
