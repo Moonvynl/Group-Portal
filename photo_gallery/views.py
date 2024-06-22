@@ -71,7 +71,7 @@ class PhotoUserListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator( PhotoPost.objects.filter(author=self.request.user).all(), 5)
+        paginator = Paginator( PhotoPost.objects.filter(author=self.request.user.id).all(), 5)
         page_number = self.request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         context['photo_posts'] = page_obj
@@ -95,7 +95,7 @@ class PhotoAuthListView(ListView):
 class PhotoPostCreateView(CreateView, LoginRequiredMixin):
     model = PhotoPost
     template_name = root + "photo_post/create_form.html"
-    success_url = reverse_lazy(app_tag+"photo_posts")
+    success_url = reverse_lazy(app_tag+"user_photos")
     form_class = PhotoPostForm
 
     def form_valid(self, form):
@@ -110,12 +110,11 @@ class PhotoAuthCreateView(CreateView, LoginRequiredMixin, UserIsOwnerMixin):
     form_class = PhotoAuthForm
     
     def form_valid(self, form):
-        form.instance.author = self.request.user
         form.instance.authorized = False
         return super().form_valid(form)
 
     def get_initial(self):
         initial = super().get_initial()
-        initial['pk'] = PhotoAuth.objects.get(id=self.kwargs['pk'])
+        initial['pk'] = get_object_or_404(PhotoPost, id=self.kwargs['pk'])
         return initial
 

@@ -46,6 +46,7 @@ class PhotoAuth(models.Model):
         related_name='auths',
         unique=True
     )
+
     details = models.CharField(max_length=63, null=True, blank=True)
     upload_date = models.DateTimeField(auto_now=True)
 
