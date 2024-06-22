@@ -92,7 +92,7 @@ class PhotoAuthListView(ListView):
         return context
 
 
-class PhotoPostCreateView(CreateView):
+class PhotoPostCreateView(CreateView, LoginRequiredMixin):
     model = PhotoPost
     template_name = root + "photo_post/create_form.html"
     success_url = reverse_lazy(app_tag+"photo_posts")
@@ -103,7 +103,7 @@ class PhotoPostCreateView(CreateView):
         return super().form_valid(form)
 
 
-class PhotoAuthCreateView(CreateView):
+class PhotoAuthCreateView(CreateView, LoginRequiredMixin, UserIsOwnerMixin):
     model = PhotoAuth
     template_name = root + "confirm_photopost.html"
     success_url = reverse_lazy(app_tag+"photo_posts")

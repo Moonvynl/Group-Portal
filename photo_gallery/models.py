@@ -2,6 +2,7 @@ from django.db import models
 from auth_system.models import CustomUser
 from django.db.models.signals import pre_delete
 from django.dispatch.dispatcher import receiver
+from django.utils import timezone
 # Create your models here.
 
 class PhotoPost(models.Model):
@@ -14,10 +15,16 @@ class PhotoPost(models.Model):
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to="photo-gallery/")
     likes = models.ManyToManyField(CustomUser, related_name="liked_photo_posts", blank=True)
-    upload_date = models.DateTimeField(auto_now=True)
+    upload_date = models.DateTimeField()
 
     class Meta:
         ordering = ['-upload_date']
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.upload_date = timezone.now()
+        self.updated_date = self.upload_date
+        super(PhotoPost, self).save(*args, **kwargs)
 
 
 class PhotoAuth(models.Model):

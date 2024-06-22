@@ -10,6 +10,8 @@ from calendar_events.events_func import next_date, previous_date, selected_date_
 from calendar_events.forms import EventCreateForm
 from django.utils import timezone
 from django.core.paginator import Paginator
+from django.contrib.auth.mixins import LoginRequiredMixin
+from calendar_events.mixins import UserIsOwnerMixin
 import calendar
 import datetime
 
@@ -61,14 +63,14 @@ def view_date_events(request, day=None, month=None, year=None):
         request=request
     )
 
-class EventListView(ListView):
+class EventListView(ListView, LoginRequiredMixin):
     model = Event
     template_name = root + "event/event_list.html"
     context_object_name = 'events'
     paginate_by = 7
 
 
-class EventCreateView(CreateView):
+class EventCreateView(CreateView, LoginRequiredMixin):
     model = Event
     template_name = root + "event/create_form.html"
     form_class = EventCreateForm
@@ -79,13 +81,13 @@ class EventCreateView(CreateView):
         return super().form_valid(form)
 
 
-class EventDeleteView(DeleteView):
+class EventDeleteView(DeleteView, LoginRequiredMixin, UserIsOwnerMixin):
     model = Event
     template_name = root+"event/delete_confirm.html"
     success_url = reverse_lazy("calendar_event:calendar_events")
 
 
-class EventUpdateView(UpdateView):
+class EventUpdateView(UpdateView, LoginRequiredMixin, UserIsOwnerMixin):
     model = Event
     template_name = root + "event/update_event.html"
     success_url = reverse_lazy("calendar_event:calendar_events")
