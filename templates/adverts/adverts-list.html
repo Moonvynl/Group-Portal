@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container mt-4">
+    {% if request.user.access == 'moder' or request.user.is_staff %}
+        <a href="{% url 'adverts:advert-create' %}" class="btn btn-primary mb-3">Create advert</a>
+    {% endif %}
+    <div class="row">
+        {% for advert in adverts %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    {% if advert.image %}
+                        <img src="{{ advert.image.url }}" class="card-img-top" alt="{{ advert.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'adverts:advert-detail' advert.id %}">{{ advert.title }}</a>
+                        </h5>
+                        <p class="card-text">{{ advert.shorten_content }}</p>
+                    </div>
+                    <div class="card-footer text-right">
+                        {% if request.user.access == 'moder' or request.user.is_staff %}
+                            <a href="{% url 'adverts:advert-update' advert.id %}" class="btn btn-warning btn-sm">Update</a>
+                            <a href="{% url 'adverts:advert-delete' advert.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% for page_num in page_obj.paginator.page_range %}
+            <a href="?page={{ page_num }}" class="display: inline-block link-offset-2 link-underline link-underline-opacity-0">{{ page_num }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

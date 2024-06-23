@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <a href="{%url 'photo_post:user_photos'%}" class="btn btn-primary ms-5">Назад</a>
+    <form method="POST" class="w-50 m-5">
+        {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-primary">Відправити запит на публікацію</button>
+            
+    </form>
+
+{% endblock %}

@@ -6,3 +6,5 @@ urlpatterns = [
     path('vote/<str:pk>', views.vote, name = 'vote'),
     path('result/<str:pk>', views.result, name = 'result')
 ]
+
+app_name = 'polls' 

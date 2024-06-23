@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block content %}
+
+    <div class="position-absolute mt-5 ml-5 translate-middle">
+        <h2>Ви впевнені що бажаєте видалити подію?</h2>
+        <div class="h6 fw-lighter">(Цю дію не можна відмінити)</div>
+        <br>
+        <p>{{ event }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" value="Видалити" class="btn btn-danger">
+            <a href="{%url 'calendar_event:calendar_events'%}" class="btn btn-primary">Назад</a>
+
+        </form>
+    </div>
+{% endblock content %}

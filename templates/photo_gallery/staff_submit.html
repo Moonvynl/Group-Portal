@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+{% load custom_tags %}
+
+{% block content %}
+    <div class="p-5">   
+        <div>
+            <a class="btn btn-primary" href="{%url 'photo_post:photo_posts'%}" role="button">Галерея</a>
+            <a class="btn btn-primary" href="{%url 'photo_post:user_photos'%}" role="button">Мої фото</a>
+            <a class="btn btn-primary" href="{%url 'photo_post:create_photo'%}" role="button">Додати фото</a>
+            {% if request.user.is_staff%}
+                <a class="btn btn-primary position-relative" href="{%url 'photo_post:post_auth_list'%}" role="button">
+                    Заявки  публікації 
+                    {%if request|to_check_photo_posts != 0%}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{request|to_check_photo_posts}}
+                        <span class="visually-hidden">unread messages</span>
+                    {%endif%}
+                </span>
+                </a>
+            {%endif%}
+        </div>
+        <br>
+        <div>
+            {% for auth_request in auth_requests %}
+                <a class="card" style="width: 25rem; text-decoration: none;" href="{%url 'photo_post:staff_auth_form' auth_request.id %}">
+                    <div class="card-body  border border-2 {%if auth_request.status == '3'%} border-warning bg-warning-subtle {%elif auth_request.status == '2'%} border-danger bg-danger-subtle {%elif auth_request.status == '1'%} border-success bg-success-subtle{%endif%}">
+                        <p class="card-text ">
+                            <h4 class="card-title{%if auth_request.status == '0'%} bg-danger {%endif%}">Фото-пост id {{auth_request.photo_post.id}}</h4>
+                            Користувач: {{auth_request.photo_post.author}}
+                            <br>
+                            Статус перевірки: {{auth_request.get_status_display}}
+                        </p>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        {{auth_request.upload_date}}
+                    </div>
+                </a>
+                <br>
+            {%endfor%}
+            {% if paginator.page_range|length > 1 %}  
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination ms-1 mt-3">
+                        {% for page_num in paginator.page_range %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav> 
+            {%endif%}
+        </div>
+    </div>
+{% endblock %}

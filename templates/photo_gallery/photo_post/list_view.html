@@ -1,0 +1,63 @@
+{% extends "index.html" %}
+{% load custom_tags %}
+{% block content %}
+    <div class="p-5">   
+        <div>
+            <a class="btn btn-primary" href="{%url 'photo_post:photo_posts'%}" role="button">Галерея</a>
+            <a class="btn btn-primary" href="{%url 'photo_post:user_photos'%}" role="button">Мої фото</a>
+            <a class="btn btn-primary" href="{%url 'photo_post:create_photo'%}" role="button">Додати фото</a>
+            {% if request.user.is_staff%}
+            <a class="btn btn-primary position-relative" href="{%url 'photo_post:post_auth_list'%}" role="button">
+                Заявки  публікації 
+                {%if request|to_check_photo_posts != 0%}
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{request|to_check_photo_posts}}
+                    <span class="visually-hidden">unread messages</span>
+                {%endif%}
+            </span>
+            </a>
+        {%endif%}
+        </div>
+        <br>
+        <div>
+            {% for post in photo_posts %}
+                <div class="card" style="width: 25rem;">
+                    <div class="card-text pt-1 fw-semibold">{{post.photo_post.author}}</div>
+                    <img src="/media/{{post.photo_post.image}}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.photo_post.title}}</h5>
+                        <p class="card-text">{{post.photo_post.description}}</p>
+                        <form action="{% url 'photo_post:post_like' post.photo_post.id %}" class="card-link"  method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">
+                                {%if request.user in post.photo_post.likes.all%}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                    </svg>
+                                {%else%}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                    </svg>
+                                {%endif%}
+                                {{post.photo_post.likes.count}}
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        Створено {{post.photo_post.upload_date}}
+                    </div>
+                </div>
+                <br>
+            {%endfor%}
+            {% if photo_posts.paginator.page_range|length > 1 %}  
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination ms-1 mt-3">
+                        {% for page_num in photo_posts.paginator.page_range %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav> 
+            {%endif%}
+        </div>
+    </div>
+{% endblock %}

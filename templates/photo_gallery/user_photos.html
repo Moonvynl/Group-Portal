@@ -1,0 +1,107 @@
+{% extends "index.html" %}
+{% load custom_tags %}
+{% block content %}
+    <div class="p-5">   
+        <div>
+            <a class="btn btn-primary" href="{%url 'photo_post:photo_posts'%}" role="button">Галерея</a>
+            <a class="btn btn-primary" href="{%url 'photo_post:user_photos'%}" role="button">Мої фото</a>
+            <a class="btn btn-primary" href="{%url 'photo_post:create_photo'%}" role="button">Додати фото</a>
+            {% if request.user.is_staff%}
+                <a class="btn btn-primary position-relative" href="{%url 'photo_post:post_auth_list'%}" role="button">
+                    Заявки  публікації 
+                    {%if request|to_check_photo_posts != 0%}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{request|to_check_photo_posts}}
+                        <span class="visually-hidden">unread messages</span>
+                    {%endif%}
+                </span>
+                </a>
+            {%endif%}
+        </div>
+        <br>
+        <div class="ms-5 w-75">
+            {% for post in photo_posts %}
+                <!-- Button trigger modal -->
+                <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal{{post.id}}">
+                    <div class="card me-3" style="width: 25rem; min-width: 250px; max-width: 400px;">
+                        <div class="card-body text-start border border-2 {%if post.auths.all.0.status == '3'%} border-warning bg-warning-subtle {%elif post.auths.all.0.status == '2'%} border-danger bg-danger-subtle {%elif post.auths.all.0.status == '1'%} border-success bg-success-subtle{%endif%}">
+                            <h5 class="card-title text-start">
+                                {{post.title}}
+                            </h5>
+                            Статус: {{post.auths.all.0.get_status_display}}
+                        </div>
+                        <div class="card-footer text-body-secondary text-start">
+                            Створено {{post.upload_date}}
+                        </div>
+                    </div>
+                </button>
+                <br>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel{{post.id}}">
+                            Перегляд
+                            <br>
+                            {% if post.auths.all.0.status != None%}
+                                Статус публікації: '{{post.auths.all.0.get_status_display}}''
+                                {%if post.auths.all.0.status == '2' and post.auths.all.0.details != None%}
+                                    <br>
+                                    Коментар: '{{post.auths.all.0.details}}'
+                                    <br>
+                                {%endif%}
+                            {%else%}
+                                <a href='{% url "photo_post:auth_photo" post.pk%}'>Опублікувати</a>
+                            {%endif%}
+                            <br>
+
+                            <a href="{% url 'photo_post:delete_confirm' post.id%}" class="btn me-2 btn-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                                </svg>
+                            </a>
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card" style="width: 25rem;">
+                                <div class="card-text ps-2 pt-1 fw-semibold">{{post.author}}</div>
+                                <img src="/media/{{post.image}}" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{post.title}}</h5>
+                                    <p class="card-text">{{post.description}}</p>
+                                    <a class="card-link disabled">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                        </svg>
+                                        {{post.likes|length}}
+                                    </a>
+                                </div>
+                                <div class="card-footer text-body-secondary">
+                                    Створено {{post.upload_date}}
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            {%endfor%}
+            {% if photo_posts.paginator.page_range|length > 1 %}  
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination ms-1 mt-3">
+                        {% for page_num in photo_posts.paginator.page_range %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav> 
+            {%endif%}
+        </div>
+    </div>
+{% endblock %}

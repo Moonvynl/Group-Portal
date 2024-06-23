@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% load custom_tags %}
+{% block content %}
+    <div class="p-5">   
+        <div>
+            <a class="btn btn-primary" href="{%url 'photo_post:photo_posts'%}" role="button">Галерея</a>
+            <a class="btn btn-primary" href="{%url 'photo_post:user_photos'%}" role="button">Мої фото</a>
+            <a class="btn btn-primary" href="{%url 'photo_post:create_photo'%}" role="button">Додати фото</a>
+            {% if request.user.is_staff%}
+                <a class="btn btn-primary position-relative" href="{%url 'photo_post:post_auth_list'%}" role="button">
+                    Заявки  публікації 
+                    {%if request|to_check_photo_posts != 0%}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{request|to_check_photo_posts}}
+                        <span class="visually-hidden">unread messages</span>
+                    {%endif%}
+                </span>
+                </a>
+            {%endif%}
+        </div>
+        <form method="POST" class="w-50 m-5" enctype="multipart/form-data">
+            {% csrf_token %}
+                
+                {{form.as_p}}
+                <button type="submit" class="btn btn-primary">Додати</button>
+                
+        </form>
+    </div>
+
+{% endblock %}

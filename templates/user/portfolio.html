@@ -1,0 +1,142 @@
+<style>
+  @media (max-width: 768px) {
+  .carousel-image {
+    width: 75%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .carousel-image {
+    width: 60%;
+  }
+}
+</style>
+
+  <section style="background-color: #eee;">
+    {% if user_is_owner %}
+    <div class="container" style="padding: 3px;">
+      <a href="{% url 'user:delete-portfolio' %}" class="btn btn-primary">Delete Portfolio</a>
+      <a href="{% url 'user:create-project' %}" class="btn btn-primary">Add project</a>
+    </div>
+    {% endif %}
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="{{user.avatar.url}}" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3">{{user.username}}</h5>
+              <p class="text-muted mb-1">{{portfolio.occupation}}</p>
+              <p class="text-muted mb-4">{{portfolio.bio}}</p>
+              <div class="d-flex justify-content-center mb-2">
+                <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary ms-1">Message</button>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4 mb-lg-0">
+            <div class="card-body p-0">
+              <ul class="list-group list-group-flush rounded-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fa-brands fa-telegram"></i>
+                  <p class="mb-0">{{portfolio.tg}}</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fab fa-github fa-lg text-body"></i>
+                  <p class="mb-0">{{portfolio.github_url}}</p>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Full Name</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{portfolio.first_name}} {{portfolio.last_name}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{portfolio.email}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{portfolio.phone}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Address</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{portfolio.adress}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            {% for project in projects %}
+            <div class="card" style="border-radius: 15px;" >
+              <div class="card-body p-4">
+                <h3 class="mb-3">{{project.title}}</h3>
+                <p class="small mb-0">{{project.description}}</p>
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    {% if project.images.count > 1 %}
+                      {% for img in project.images.all %}
+                        <div class="carousel-item active">
+                          <img src="{{ img.image.url }}" class="d-block w-100 carousel-image" alt="Image {{ forloop.counter }}" style="width: 300px; height: 300px;">
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      {% if project.images.exists %}
+                        <div class="carousel-item active">
+                          <img src="{{ project.images.first.image.url }}" class="d-block w-100 carousel-image" alt="Single Image" style="width: 300px; height: 300px;">
+                        </div>  
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Предыдущий</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Следующий</span>
+                  </button>
+                </div>
+                <hr class="my-4">
+                <div class="d-flex justify-content-start align-items-center">
+                  <a href="{{project.git_url}}"><p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i> <span
+                      class="text-muted small">github link</span></p></a>
+                    <span class="ms-3 me-4">|</span></p>
+                  <a href="#!">
+                    <img src="{{user.avatar.url}}" alt="avatar"
+                      class="img-fluid rounded-circle me-1" width="35">
+                  </a>
+                  {% if user_is_owner %}
+                  <a href="{% url 'user:delete-project' project.id %}"><i class="fa-sharp fa-solid fa-trash"></i></a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

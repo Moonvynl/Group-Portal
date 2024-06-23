@@ -101,14 +101,14 @@
 
 <body>
     <div class="container">
-        <form action="{% url 'login' %}" method="post" class="form">
+        <form action="{% url 'auth_system:login' %}" method="post" class="form">
             {% csrf_token %}
             <header>Login</header>
             {{ form.as_p }}
             <input type="submit" class="button" value="Login">
         </form>
         <div class="signup">
-            <span>Don't have an account? <a href="{% url 'signup' %}">Signup</a></span>
+            <span>Don't have an account? <a href="{% url 'auth_system:register' %}">Signup</a></span>
         </div>
     </div>
 </body>

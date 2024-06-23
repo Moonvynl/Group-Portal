@@ -351,7 +351,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <!--<img src="logo.png" alt="">-->
+                    <img src="/static/img/LogikaLogo.png" alt="">
                 </span>
 
                 <div class="text logo-text">
@@ -373,72 +373,50 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{% url 'menu:index' %}">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Головна</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Електронний щоденник</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
+                        <a href="{% url 'forum:all-categories' %}">
                             <i class='bx bx-bell icon'></i>
                             <span class="text nav-text">Форум</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="polls/polls">
+                        <a href="{% url 'polls:index' %}">
                             <i class='bx bx-pie-chart-alt icon'></i>
                             <span class="text nav-text">Опитування</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Голосування</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <span class="icon"><i class='bx bx-message-square-dots'></i></span>
+                        <a href="{% url 'adverts:adverts-list' %}">
+                            <span><i class='bx bx-message-square-dots icon'></i></span>
                             <span class="text nav-text">Оголошення</span>
                         </a>
                     </li>
 
-
                     <li class="nav-link">
-                        <a href="#">
-                            <span class="icon"><i class='bx bx-copy-alt'></i></span>
-                            <span class="text nav-text">Матеріали</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <span class="icon"><i class='bx bx-star'></i></span>
+                        <a href="{% url 'user:user-list' %}">
+                            <span><i class='bx bx-star icon'></i></span>
                             <span class="text nav-text">Портфоліо</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
-                            <span class="icon"><i class='bx bx-photo-album'></i></span>
+                        <a href="{% url 'photo_post:photo_posts' %}">
+                            <span><i class='bx bx-photo-album icon'></i></span>
                             <span class="text nav-text">Галерея</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
-                            <span class="icon"><i class='bx bx-calendar'></i></span>
+                        <a href="{% url 'calendar_event:calendar_events' %}">
+                            <span><i class='bx bx-calendar icon'></i></span>
                             <span class="text nav-text">Календар</span>
                         </a>
                     </li>
@@ -449,14 +427,17 @@
             <div class="bottom-content">
                 {% if user.is_authenticated %}
                     <li class="">
-                        <a href="logout">
-                            <i class='bx bx-log-out icon'></i>
-                            <span class="text nav-text">Logout</span>
-                        </a>
+                        <form action="{% url 'auth_system:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">
+                                <i class='bx bx-log-out icon'></i>
+                                <span class="text nav-text">Logout</span>
+                            </button>
+                        </form>
                     </li>
                 {% else %}
                     <li class="">
-                        <a href="login">
+                        <a href="{% url 'auth_system:login' %}">
                             <i class='bx bx-log-in icon'></i>
                             <span class="text nav-text">Login/Register</span>
                         </a>
@@ -484,12 +465,14 @@
     <section class="home">
         <div class="text">Group portal</div>
         <div class="user-info">
-            {{ user.username }}
+            {% if user.is_authenticated %}
+            <a href="{% url 'user:profile' user.id %}">{{ user.username }}</a>
+            {% endif %}
         </div>
         {%block content%}
             
         {%endblock%}
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </section>
 
     <script>

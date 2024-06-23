@@ -42,7 +42,11 @@ INSTALLED_APPS = [
     'menu',
     'calendar_events',
     'forum',
-    'pollsapp'
+    'adverts',
+    'user',
+    'photo_gallery',
+    'pollsapp',
+
 ]
 
 MIDDLEWARE = [
@@ -92,13 +96,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -126,6 +124,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+STATIC_ROOT = "/static/"
+
 AUTH_USER_MODEL = 'auth_system.CustomUser'
 
 # Default primary key field type
@@ -135,3 +135,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL = '/'
